@@ -183,25 +183,22 @@ def video_delete(request,slug=None):
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        user_profile_form = UserProfileForm(data=request.POST)
-        if user_form.is_valid() and user_profile_form.is_valid():
+        # user_profile_form = UserProfileForm(data=request.POST)
+        if user_form.is_valid():
             password = user_form.cleaned_data['password']
             user = user_form.save()
             user.set_password(password)
             user.save()
-            user_profile = user_profile_form.save(commit=False)
-            user_profile.user = user
+            user_profile = UserProfile(user=user)
             user_profile.save()
             user.save()
             return redirect("videos:login")
         else:
-            print(user_form.errors,user_profile_form.errors)
+            print(user_form.errors)
     else:
         user_form = UserForm()
-        user_profile_form = UserProfileForm()
     context = {
         'user_form':user_form,
-        'user_profile_form':user_profile_form,
     }
     return render(request,'register.html',context=context)
 
