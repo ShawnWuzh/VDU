@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b1bad15-8739-419a-8c63-d3e216dc2f6c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change beforePath="$PROJECT_DIR$/Video/settings.py" afterPath="$PROJECT_DIR$/Video/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,16 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="video_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/video_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2464">
-              <caret line="118" column="47" lean-forward="false" selection-start-line="118" selection-start-column="47" selection-end-line="118" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="video_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/video_list.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -56,11 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
               <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Video/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -154,7 +154,6 @@
         <option value="$PROJECT_DIR$/comments/__init__.py" />
         <option value="$PROJECT_DIR$/Video/urls.py" />
         <option value="$PROJECT_DIR$/videos/admin.py" />
-        <option value="$PROJECT_DIR$/Video/settings.py" />
         <option value="$PROJECT_DIR$/templates/signin.html" />
         <option value="$PROJECT_DIR$/comments/forms.py" />
         <option value="$PROJECT_DIR$/videos/urls.py" />
@@ -174,6 +173,7 @@
         <option value="$PROJECT_DIR$/templates/user_videos.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/Video/settings.py" />
       </list>
     </option>
   </component>
@@ -212,6 +212,11 @@
           <expand>
             <path>
               <item name="Video" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Video" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Video" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Video" type="462c0819:PsiDirectoryNode" />
               <item name="Video" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -500,14 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Video/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2530">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Video/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -722,6 +719,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Video/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding />
         </state>
       </provider>
