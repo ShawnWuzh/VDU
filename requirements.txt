@@ -1,4 +1,3 @@
-distributed==1.19.1
 Django==1.11
 django-chartit==0.2.9
 django-classy-tags==0.6.2
