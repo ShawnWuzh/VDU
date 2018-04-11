@@ -40,12 +40,9 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = [
-            'profile_pic',
             'description',
         ]
         widgets = {
-            'profile_pic': forms.FileInput(
-                attrs={"class": "form-control", "placeholder": "first name", "required": "required"}),
             "description": forms.Textarea(
                 attrs={"class": "form-control", "placeholder": "description", "required": "required"}),
         }

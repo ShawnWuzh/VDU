@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to=upload_location,blank=True)
+    # profile_pic = models.ImageField(upload_to=upload_location,blank=True)
     description = models.TextField(null=True,blank=True)
 
     def get_connections(self):
