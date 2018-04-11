@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="form-elements">
+    <div class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="left-panel">
+              <h2 class="section-title">Register Now</h2><!-- /.section-title -->
+              
+              <form action="." class="register-form" method="post">
+                  {% csrf_token %}
+                <p class="form-input">
+                  {{ user_form.first_name }}
+                </p>
+                <p class="form-input">
+                    {{ user_form.last_name }}
+                </p>
+                <p class="form-input">
+                    {{ user_form.email }}
+                </p>
+                <p class="form-input">
+                    {{ user_form.username }}
+                </p>
+                <p class="form-input">
+                    {{ user_form.password }}
+                </p>
+                <p class="form-input">
+                  {{ user_form.confirm_password }}
+                </p>
+
+                <p class="submit-input">
+                  <input type="submit" class="btn" name="signup-form-submit" value="Register Now">
+                </p>
+
+              </form>
+            </div><!-- /.left-panel -->
+          </div>
+
+          <div class="col-sm-5">
+            <div class="right-panel">
+              <h4>Have an account? Sign in</h4>
+              <form class="sign-in-form" id="sign-in-form" action="#" method="post">
+                  {% csrf_token %}
+                <p class="form-input">
+                  <input type="text" name="log" id="user_login" class="input form-control" value="" placeholder="Username / Email" required/>
+                </p>
+                <p class="form-input">
+                  <input type="password" name="pwd" id="user_pass" class="input form-control" value="" placeholder="Password" required/>
+                </p>
+                <p class="checkbox">
+                  <a href="#" class="pull-right" title="Keep Me Signed in"> Forgot password?</a>
+                </p>
+                <p class="submit-input">
+                  <input type="submit" name="wp-submit" id="wp-submit" class="btn" value="Log In" />
+                </p>
+              </form>
+            </div><!-- /.right-panel -->
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.form-elements -->
+
+{% endblock %}

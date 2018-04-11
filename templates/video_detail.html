@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load staticfiles %}
+{% block content %}
+    <section class="blog-posts video-post">
+        <div class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <article class="post type-post format-standard">
+                            <div class="entry-thumbnail">
+                                {% video instance.url as my_video %}
+                                    <div class="item">
+                                        <img src="{{ my_video.thumbnail }}" alt="Slider Image">
+                                        <a class="play-video iframe" href="{{ instance.url }}"><i
+                                                class="fa fa-play"></i></a>
+                                    </div>
+                                {% endvideo %}
+                            </div><!-- /.entry-thumbnail -->
+
+                            <div class="entry-content">
+                                <div class="entry-meta">
+                                    <span><time datetime="2017-02-23">{{ instance.time }}</time></span>
+                                    <span class="category tag"><a href="#">{{ instance.category }}</a></span>
+                                </div><!-- /.entry-meta -->
+
+                                <h2 class="entry-title"><a href="#">{{ instance.title }}</a></h2><!-- /.entry-title -->
+
+                                <div class="author-meta">
+                                    <div class="col-xs-7">
+                                        <div class="left-side media">
+                                            <div class="author-avatar media-left"><img
+                                                    src="{% static 'assets/images/author.jpg' %}" alt="Avatar"></div>
+                                            <div class="author-details media-body">
+                                                <h3 class="name"><a href="{% url "videos:userhomepage" slug=instance.author.user.username %}">{{ instance.author.user.username }}</a>
+                                                </h3><!-- /.name -->
+{#                                                <button class="follow-btn">Follow</button>#}
+{#                                                <span class="follow-counter"><span class="count">{{ followers }}</span> followers</span>#}
+                                            </div><!-- /.author-details -->
+                                        </div><!-- /.left-side -->
+                                    </div>
+
+                                    <div class="col-xs-5">
+                                        <div class="right-side">
+                                            <span class="view-counter"><span
+                                                    class="count">{{ views }}</span> Views</span>
+                                            {#                      <span class="like-count"><i class="fa fa-thumbs-o-up"></i><span class="count">3099</span></span>#}
+                                        </div><!-- /.right-side -->
+                                    </div>
+                                </div><!-- /.author-meta -->
+
+                                <p>
+                                    <strong>
+                                        {{ instance.description }}
+                                    </strong>
+                                    <br><br>
+                                </p>
+
+                            </div><!-- /.entry-content -->
+
+                            <div class="post-bottom">
+                                <div class="tags pull-left">
+                                    {% for tag in tags %}
+                                        <a href="#">{{ tag }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div><!-- /.post-bottom -->
+                        </article><!-- /.post -->
+
+                        <div class="comments">
+                            <h2 class="section-title">{{ comments|length }} Comments</h2>
+                            <ol class="comment-list">
+                                {% for comment in comments %}
+
+                                <li class="comment parent media">
+                                    <div class="comment-item">
+                                        <div class="author-avatar media-left">
+                                            <img src="{% static 'assets/images/author.jpg' %}" alt="Comment Authors">
+                                        </div><!-- /.author-avatar -->
+                                        <div class="comment-body media-body">
+                                            <div class="comment-metadata">
+                                                <span class="name"><a href="#">{{ comment.user.username }}</a></span>
+                                                <span class="time"><time datetime="2017-02-09 21:00">{{ comment.timestamp }}</time> </span>
+                                            </div><!-- /.comment-metadata -->
+                                            <p class="description">{{ comment.content }}</p>
+                                        </div><!--/.comment-body-->
+                                    </div><!-- /.comment-item -->
+                                </li>
+                                {% endfor %}
+                                {% if request.user.is_authenticated %}
+                                    <div class="respond">
+                                        <h2 class="title">Leave a Comment</h2>
+                                        <form action="." method="post" class="comment-form">
+                                            {% csrf_token %}
+                                            {{ comment_form }}
+                                            <input class="btn" type="submit" value="Post Comment">
+                                        </form><!-- /.comment-form -->
+                                    </div><!-- /.respond -->
+                                {% else %}
+                                    <p>You must login to comment</p>
+                                {% endif %}
+
+                            </ol>
+                    </div>
+
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="widget widget_submit_video">
+                            <h3 class="widget-title">Submit Video</h3><!-- /.widget-title -->
+                            <div class="widget-details">
+                                <p>Please submit yout orginal videos, any illegal videos will be deleted by editors
+                                    immediately.</p>
+
+                                <div class="file-upload"><a href="{% url "videos:videoupload" %}" class="btn upload-btn">Upload your video</a></div>
+
+                            </div><!-- /.widget-details -->
+                        </div><!-- /.widget -->
+                        <aside class="sidebar">
+                            <div class="widget widget_banner_ad">
+                                <div class="widget-details">
+                                    <a href="#"><img src="{% static 'assets/images/ad.jpg' %}"
+                                                     alt="Banner ad image"></a>
+                                </div><!-- /.widget-details -->
+                                <br><br><br>
+                                <div class="widget-details">
+                                    <a href="#"><img src="{% static 'assets/images/ad.jpg' %}"
+                                                     alt="Banner ad image"></a>
+                                </div><!-- /.widget-details -->
+                                <br><br><br>
+                                <div class="widget-details">
+                                    <a href="#"><img src="{% static 'assets/images/ad.jpg' %}"
+                                                     alt="Banner ad image"></a>
+                                </div><!-- /.widget-details -->
+                            </div><!-- /.widget -->
+                        </aside><!-- /.sidebar -->
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+    </section><!-- /.video-post -->
+{% endblock %}

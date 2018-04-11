@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load staticfiles %}
+
+  {% block content %}
+
+  <section class="trending-titles">
+    <div class="container">
+      <div class="left-panel">
+        <i class="fa fa-bullhorn"></i>
+        <h2 class="section-title">Trending:</h2>
+      </div><!-- /.left-panel -->
+
+      <div class="right-panel">
+        <div class="title-slider owl-carousel owl-theme">
+            {% for trend_video,view in trending_videos.items %}
+          <div class="item">
+            <article>
+              <h3 class="entry-title"><a href="{% url "videos:videodetail" slug=trend_video.slug %}"><i class="fa fa-play-circle-o"></i>{{ trend_video.title }}</a></h3>
+            </article>
+          </div><!-- /.item -->
+            {% endfor %}
+        </div><!-- /.title-slider -->
+      </div><!-- /.right-panel -->
+    </div><!-- /.container -->
+  </section><!-- /.trending-titles -->
+
+{#      https://i.vimeocdn.com/video/603788680.jpg?mw=960&mh=540#}
+
+  <section class="parallax-section background-bg" data-image-src="{% static "assets/images/bg.jpg" %}">
+    <div class="overlay">
+      <div class="section-padding">
+        <div class="container">
+          <h2 class="section-title">Editor's Choice</h2><!-- /.section-title -->
+
+          <div class="row">
+
+          {% for video,view in editors_first_pick.items %}
+            <div class="col-md-7">
+              <div class="left-panel">
+                  {% video video.url as my_video %}
+                <article class="post type-post">
+                  <div class="entry-thumbnail">
+                      <img src="{{ my_video.thumbnail }}">
+                    <a class="iframe" href="{{ video.url }}">
+                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
+                    </a>
+                  </div><!-- /.entry-thumbnail -->
+                    {% endvideo %}
+                  <div class="entry-content">
+                    <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug%}">{{ video.title }}</a></h2><!-- /.entry-title -->
+                    <div class="entry-meta">
+                      <span class="author"><a href="#">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time | timesince}} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count"></span>{{ video.comment|length }}</a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+                    <p>
+                        {{ video.description|truncatewords:28 }}
+                    </p>
+                  </div><!-- /.entry-content -->
+                </article><!-- /.type-post -->
+              </div><!-- /.left-panel -->
+            </div>
+                  {% endfor %}
+
+            <div class="col-md-5">
+              <div class="right-panel">
+                  {% for video,view in editors_other_pick.items %}
+
+                {% video video.url as my_video %}
+
+                <article class="post type-post media">
+                  <div class="entry-thumbnail media-left">
+                    <img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
+                    <a href="{{ video.url }}" class="iframe">
+                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
+                    </a>
+                  </div><!-- /.entry-thumbnail -->
+                {% endvideo %}
+
+                  <div class="entry-content media-body">
+                    <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title|truncatewords:15 }}</a></h2><!-- /.entry-title -->
+                    <div class="entry-meta">
+                      <span class="author"><a href="#">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time | timesince}} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count">{{ video.comment|length }}</span></a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+                  </div><!-- /.entry-content -->
+                </article><!-- /.type-post -->
+
+                {% endfor %}
+              </div><!-- /.right-panel -->
+            </div>
+          </div>
+        </div><!-- /.container -->
+      </div><!-- /.section-padding -->
+    </div><!-- /.overlay -->
+  </section><!-- /.parallax-section -->
+
+  <section class="play-list">
+    <div class="section-padding">
+      <div class="container">
+        <h2 class="section-title">Today's Top Videos</h2><!-- /.section-title -->
+        <div id="list-slider" class="list-slider owl-carousel owl-theme">
+            {% for video,view in days_popular_videos.items %}
+                                {% video video.url as my_video %}
+
+          <div class="item">
+            <article class="post type-post">
+              <div class="entry-thumbnail">
+                <img src="{{ my_video.thumbnail }}" alt="Entry Thumbnail">
+                <a href="{{ video.url }}" class="iframe">
+                  <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
+                </a>
+              </div><!-- /.entry-thumbnail -->
+              <div class="entry-content">
+                    <h8 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title|truncatewords:15 }}</a></h8>{#                <span class="post-count"><a href="#"><span class="count">19</span> videos</a></span><!-- /.post-count -->#}
+                    <div class="entry-meta">
+                      <span class="author"><a href="#">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time | timesince}} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count">{{ video.comment|length }}</span></a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+              </div><!-- /.entry-content -->
+            </article><!-- /.post -->
+          </div>
+                {% endvideo %}
+            {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-contents">
+    <div class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <h2 class="section-title">Latest Videos</h2><!-- /.section-title -->
+
+            <div class="trending-slider owl-carousel owl-theme">
+                  {% for video,view in latest_videos.items %}
+                {% video video.url as my_video %}
+
+              <div class="item">
+                  <article class="post type-post">
+                  <div class="entry-thumbnail">
+                    <img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
+                    <a class="iframe" href="{{ video.url }}">
+                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
+                    </a>
+                  </div><!-- /.entry-thumbnail -->
+                  <div class="entry-content">
+                    <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title }}</a></h2><!-- /.entry-title -->
+                    <div class="entry-meta">
+                      <span class="author"><a href="#">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time |timesince}} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count">{{ video.comment|length }}</span></a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+                  </div><!-- /.entry-content -->
+                </article><!-- /.type-post -->
+
+              </div><!-- /.item -->
+                {% endvideo %}
+                          {% endfor %}
+
+            </div><!-- /.latest-videos-slider -->
+          <h2 class="section-title">Week’s Top Videos</h2><!-- /.section-title -->
+
+            <div class="weekly-top owl-carousel owl-theme">
+                {% for video,view in week_popular_videos.items %}
+                    {% video video.url as my_video %}
+
+              <div class="item">
+                <article class="post type-post">
+                  <div class="entry-thumbnail"><img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
+                    <a href="{{ video.url }}" class="iframe play-video"><i class="fa fa-play-circle-o"></i></a>
+                  </div><!-- /.entry-thumbnail -->
+
+                  <div class="entry-content">
+                    <h2 class="entry-title">
+                      <a href="{% url "videos:videodetail" slug=video.slug %}">
+                        {{ video.title }}
+                      </a>
+                    </h2><!-- /.entry-title -->
+                    <div class="entry-meta">
+                      <span class="author"><a href="#">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time |timesince}} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count">{{ video.comment|length }}</span></a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+                  </div><!-- /.entry-content -->
+                </article><!-- /.type-post -->
+              </div><!-- /.item -->
+                    {% endvideo %}
+                {% endfor %}
+                            </div><!-- /.weekly-top -->
+            <div class="padding"></div><!-- /.padding -->
+          </div>
+
+          <div class="col-sm-4">
+            <aside class="sidebar">
+              <div class="widget widget_banner_ad">
+                <div class="widget-details">
+                    <a href="#"><img src="{% static "assets/images/ad.jpg" %}" alt="Banner ad image"></a>
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+
+              <div class="widget widget_banner_ad">
+
+                <div class="widget-details">
+                    <a href="#"><img src="{% static "assets/images/ad.jpg" %}" alt="Banner ad image"></a>
+
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+            </aside><!-- /.sidebar -->
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.video-content -->
+  {% endblock %}
+

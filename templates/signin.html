@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="form-elements style-2">
+    <div class="section-padding">
+      <div class="right-panel">
+        <h4>Have an account? Sign in</h4>
+        <form class="sign-in-form" id="sign-in-form" action="." method="post">
+            {% csrf_token %}
+            {% for field in form %}
+          <p class="form-input">
+              {{ field }}
+          </p>
+            {% endfor %}
+          <p class="submit-input">
+            <input type="submit" name="wp-submit" id="wp-submit" class="btn" value="Log In Now" />
+          </p>
+          <p class="checkbox">
+            <a href="#" class="pull-right" title="Keep Me Signed in"> Forgot password?</a>
+          </p>
+
+        </form>
+      </div><!-- /.right-panel -->
+
+      <span class="bottom-text">
+        Don’t Have an Account? <a href="{% url 'videos:register' %}">Sign Up</a>
+      </span>
+    </div><!-- /.section-padding -->
+  </section><!-- /.form-elements -->
+
+
+{% endblock %}
+

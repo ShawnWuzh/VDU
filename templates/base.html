@@ -1,0 +1,259 @@
+{% load staticfiles %}
+{% load embed_video_tags %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zxx"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VDU-tell your own stories</title>
+  <meta name="description" content="VDU - Video Sharing Social Media">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- ========= FontAwesome Icon Css File ========= -->
+  <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+
+  <!-- ========= Themify Icon Css File ========= -->
+  <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+
+  <!-- ========= Bootstrap Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/bootstrap.min.css' %}">
+
+  <!-- ========= Magnific PopUp Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/magnific-popup.css' %}">
+
+  <!-- ========= Owl Carousel Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/owl.carousel.css' %}">
+
+  <!-- ========= Animate Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/animate.min.css' %}">
+
+  <!-- ========= Template Default Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/style.css' %}">
+
+  <!-- ========= Template Menu Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/header.css' %}">
+
+  <!-- ========= Template Main Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/themes.css' %}">
+
+  <!-- ========= Template Responsive Style Css File ========= -->
+  <link rel="stylesheet" href="{%  static 'assets/css/responsive.css' %}">
+
+  <script src="{% static 'assets/js/modernizr.custom.js' %}"></script>
+
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-sitemap text-left">
+              <span>Enjoy yourself !</span>
+                {% if request.user.is_authenticated %}
+                    <span><i class="fa fa-lock"></i> {{ request.user.username }}</span>
+              <span><a href="{% url 'videos:logout' %}"><i class="fa fa-user"></i> Log Out</a></span>
+                    {% else %}
+                    <span> <a href="{% url 'videos:login' %}"><i class="fa fa-lock"></i> Sign In</a></span>
+              <span><a href="{% url 'videos:register' %}"><i class="fa fa-user"></i> Register</a></span>
+                {% endif %}
+            </div><!-- /.top-sitemap -->
+          </div>
+
+          <div class="col-sm-6">
+            <div class="top-sitemap text-right">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-vimeo-square"></i></a>
+              <a href="#"><i class="fa fa-google-plus-square"></i></a>
+              <a href="#"><i class="fa fa-youtube"></i></a>
+            </div><!-- /.top-sitemap -->
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div><!-- /.header-top -->
+
+    <div class="header-middle">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="navbar-brand hidden-xs"><a href="./"><img src="{% static 'assets/images/logo.png' %}" alt="Site Logo" class="site-logo"></a></div>
+          </div>
+          <div class="col-sm-9"><a href="#" class="banner-ad"><img src="{% static 'assets/images/top-ad.jpg' %}" alt="Ad Image"></a></div>
+        </div>
+      </div>
+    </div><!-- /.header-middle -->
+
+    <div class="header-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7">
+            <nav class="navbar navbar-default">
+              <div class="navbar-header visible-xs">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./"><img src="{% static 'assets/images/logo.png' %}" alt="Logo"></a>
+              </div>
+
+              <div id="menu" class="main-menu collapse navbar-collapse pull-left">
+
+                <ul class="nav navbar-nav">
+
+                  <li class="menu-item menu-item-has-children active">
+                    <a class="menu-item menu-item-has-children active"href="#">Home</a>
+                    <ul class="sub-menu children">
+                      <li><a href="{% url "videos:index" %}">Homepage</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="menu-item menu-item-has-children">
+                    <a href="#">Categories</a>
+                    <ul class="sub-menu children">
+                      <li><a href="{% url 'videos:videos' category='music'%}">Music</a></li>
+                      <li><a href="{% url 'videos:videos' category='sports'%}">Sports</a></li>
+                      <li><a href="{% url 'videos:videos' category='gaming'%}">Gaming</a></li>
+                      <li><a href="{% url 'videos:videos' category='education'%}">Education</a></li>
+                      <li><a href="{% url 'videos:videos' category='funny'%}">Funny</a></li>
+                      <li><a href="{% url 'videos:videos' category='animals'%}">Animals</a></li>
+                      <li><a href="{% url 'videos:videos' category='travel'%}">Travel</a></li>
+                      <li><a href="{% url 'videos:videos' category='fashion'%}">Fashion</a></li>
+                      <li><a href="{% url 'videos:videos' category='cars'%}">Cars</a></li>
+                      <li><a href="{% url 'videos:videos' category='lifestyle'%}">Lifestyle</a></li>
+                    </ul>
+                  </li>
+
+{#                  <li class="menu-item menu-item-has-children">#}
+{#                    <a href="#">Charts</a>#}
+{#                    <ul class="sub-menu children">#}
+{#                        <li><a href="contact.html">Daily Top Videos</a></li>#}
+{#                      <li><a href="contact.html">Weekly Top Videos</a></li>#}
+{#                      <li><a href="register.html">Monthly Top Videos</a></li>#}
+{#                    </ul>#}
+{#                  </li>#}
+                    {% if request.user.is_authenticated %}
+                  <li class="menu-item menu-item-has-children">
+                    <a href="#">My account</a>
+                    <ul class="sub-menu children">
+                      <li><a href="{% url 'videos:userhomepage' slug=request.user.username %}">Profile</a></li>
+                      <li><a href="{% url 'videos:uservideos' slug=request.user.username %}">Profile Videos</a></li>
+                      <li><a href="{% url 'videos:videoupload' %}">Submit Video</a></li>
+                    </ul>
+                  </li>
+                    {% endif %}
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </nav><!-- /.navbar -->
+          </div>
+{#          <div class="col-sm-5">#}
+{#            <form class="search-form" method="get" action="#">#}
+{#              <input name="s" type="text" class="search-input" size="20" maxlength="20" placeholder="Search Fun ...." required="">#}
+{#              <input type="submit" name="submit" class="search-submit">#}
+{#            </form><!-- /.search-form -->#}
+{#          </div>#}
+
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.header-bottom -->
+  </header><!-- /.header -->
+
+  {% block content %}
+  {% endblock %}
+  <footer class="site-footer">
+    <div class="footer-top background-bg" data-image-src="{% static 'assets/images/bg-footer.jpg' %}">
+      <div class="overlay">
+        <div class="section-padding">
+          <div class="container">
+
+            <div class="row">
+              <div class="footer-widgets">
+                <div class="col-md-3 col-sm-6">
+                  <div class="widget widget_about">
+                    <div class="widget-details">
+                      <img class="footer-logo" src="{% static 'assets/images/logo.png' %}" alt="Logo">
+                      <p>
+                        Tell Your Own Stories in VDU!
+                      </p>
+
+                      <div class="footer-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
+                        <a href="#"><i class="fa fa-vimeo-square"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                      </div>
+                    </div><!-- /.widget-details -->
+                  </div><!-- /.widget -->
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <div class="widget widget_popular_posts">
+                    <h3 class="widget-title">About Us</h3><!-- /.widget-title -->
+                        <p>We are most viewed wesite around the world!</p>
+                    <div class="widget-details">
+
+                    </div><!-- /.widget-details -->
+                  </div><!-- /.widget -->
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <div class="widget widget_tags">
+                    <h3 class="widget-title">Contact Us</h3><!-- /.widget-title -->
+
+                    <div class="widget-details">
+                      <p>zongheng.wu@connect.polyu.hk</p>
+                    </div><!-- /.widget-details -->
+                  </div><!-- /.widget -->
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <div class="widget widget_twitter_feed">
+                    <h3 class="widget-title">Join Us</h3><!-- /.widget-title -->
+
+                    <div class="widget-details">
+                      <div class="tweet-slider owl-carousel owl-theme">
+                        <div class="item">
+                          <div class="tweet">
+                            <span class="title">Software engineer wanted!</span><!-- /.title -->
+                            <a class="tag" href="#">Join us now!</a>
+                            <span class="time"><i class="fa fa-clock-o"></i> <time datetime="PT1H"> 1 hours ago</time></span>
+                          </div><!-- /.tweet -->
+
+                          <div class="tweet">
+                            <span class="title">Internship Wanted!</span><!-- /.title -->
+                            <a class="tag" href="#">Join us now!</a>
+                            <span class="time"><i class="fa fa-clock-o"></i> <time datetime="PT2H"> 2 hours ago</time></span>
+                          </div><!-- /.tweet -->
+                        </div><!-- /.item -->
+                      </div><!-- /.tweet-slider -->
+                    </div><!-- /.widget-details -->
+                  </div><!-- /.widget -->
+                </div>
+
+              </div>
+            </div><!-- /.row -->
+          </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+      </div><!-- /.overlay -->
+    </div><!-- /.footer-top -->
+
+    <div class="footer-bottom">
+      <div class="padding">
+        <div class="container">
+          <div class="copyright text-center">
+            © <a href="demos.jeweltheme.com/videostories">VDU</a> 2018 | Develpoed With Love by <a href="https://jeweltheme.com">WU ZONGHENG</a>
+            Designed by <a href="#">ZONGHENG WU</a>
+          </div><!-- /.copyright -->
+        </div><!-- /.container -->
+      </div><!-- /.padding -->
+    </div><!-- /.footer-bottom -->
+  </footer><!-- /.footer -->
+  <script src="{% static 'assets/js/plugins.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>

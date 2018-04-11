@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load embed_video_tags %}
+
+{% block content %}
+
+    <section class="author-heading">
+        <div class="section-padding">
+            <div class="container">
+                <div class="heading-top">
+                    <div class="author-cover-image background-bg" data-image-src="{% static 'assets/images/bg3.jpg' %}">
+                        <div class="overlay"></div><!-- /.overlay -->
+                    </div><!-- /.author-cover-image -->
+                </div><!-- /.heading-top -->
+                <div class="heading-bottom">
+                    <div class="bottom-left col-xs-6">
+                        <div class="author-image"><img src="{% static 'assets/images/author.jpg' %}" alt="Author Image">
+                        </div>
+                        <h3 class="author-name"><a href="#">{{ userprofile.user.username }}</a></h3>
+                    </div><!-- /.bottom-left -->
+{##}
+{#                    <div class="bottom-right col-xs-6 text-right">#}
+{#                        {% if request.user == userprofile.user %}#}
+{#                            <span class="subs-count"><span class="count">{{ followers|length }}</span> Followers</span>#}
+{#                            <!-- /.subs-count -->#}
+{#                            {% else %}#}
+{##}
+{#                            {% if followed %}#}
+{#                                <button class="btn follow-btn"><a href="">UnFollow</a>></button><!-- /.follow-btn -->#}
+{#                            {% else %}#}
+{#                                <button class="btn follow-btn"><a href="">Follow</a>></button><!-- /.follow-btn -->#}
+{#                            {% endif %}#}
+{##}
+{#                        {% endif %}#}
+{#                    </div><!-- /.bottom-right -->#}
+                </div><!-- /.header-bottom -->
+            </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+    </section><!-- /.author-heading -->
+
+
+    <section class="author-page-contents">
+        <div class="section-padding">
+            <div class="container">
+                <nav class="author-page-links">
+                    <a href="{% url "videos:userhomepage" slug=userprofile.user.username %}">Home</a>
+                    <a class="active" href="{% url "videos:uservideos" slug=userprofile.user.username %}">Videos</a>
+                    {% if request.user == userprofile.user %}
+                        <a href="{% url "videos:videoupload" %}">Upload</a>
+                    {% endif %}
+                </nav><!-- /.author-page-links -->
+
+                <div class="author-contents">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="about-author">
+
+                                <div class="author-videos">
+                                    {% for video,view in videos.items %}
+                                        {% video video.url as my_video %}
+                                            <article class="post type-post col-sm-4">
+                                                <div class="entry-thumbnail">
+                                                    <img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
+                                                    <a href="{{ video.url }}" class="iframe">
+                                                        <span class="play-video"><i
+                                                                class="fa fa-play-circle-o"></i></span>
+                                                    </a>
+                                                </div><!-- /.entry-thumbnail -->
+                                                <div class="entry-content">
+                                                    <h2 class="entry-title"><a
+                                                            href="{% url 'videos:videodetail' slug=video.slug %}">{{ video.title }}</a>
+                                                    </h2><!-- /.entry-title -->
+                                                    <div class="entry-meta">
+                                                        <span><i class="fa fa-clock-o"></i> <time
+                                                                datetime="PT5M">{{ video.time|timesince }} ago</time></span>
+                                                        <span><a href="#"><i class="fa fa-comment-o"></i> <span
+                                                                class="count">{{ view.comment|length }}</span></a></span>
+                                                        <span><i class="fa fa-eye"></i> <span
+                                                                class="count">{{ view }}</span></span>
+                                                    </div><!-- /.entry-meta -->
+
+                                                </div><!-- /.entry-content -->
+                                            </article><!-- /.type-post -->
+                                        {% endvideo %}
+                                    {% endfor %}
+
+                                </div><!-- /.author-videos -->
+
+                            </div><!-- /.about-author -->
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <aside class="sidebar">
+                                <div class="widget widget_banner_ad">
+                                    <div class="widget-details">
+                                        <a href="#"><img src="{% static "assets/images/ad.jpg" %}"
+                                                         alt="Banner ad image"></a>
+                                    </div><!-- /.widget-details -->
+                                </div><!-- /.widget -->
+                            </aside><!-- /.sidebar -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+    </section><!-- /.author-page-contents -->
+
+{% endblock content %}

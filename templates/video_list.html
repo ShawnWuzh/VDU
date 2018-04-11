@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load staticfiles %}
+{% block content %}
+
+  <section class="video-contents category-sorting column-3">
+    <div class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <h2 class="section-title">
+                {% if category is not None %}
+                {{ category }}
+                {% else %}
+                All Videos
+                {% endif %}
+            </h2>
+            <div class="row">
+                {% for video,view in object_list.items %}
+                    {% video video.url as my_video %}
+
+              <div class="col-md-4 col-sm-6">
+                <article class="post type-post">
+                  <div class="entry-thumbnail">
+                    <img src="{{ my_video.thumbnail }}" alt="Entry Thumbnail">
+                  </div><!-- /.entry-thumbnail -->
+                  <div class="entry-content">
+                    <span class="category tag"><a href="#">{{ video.category }}</a></span><!-- /.category -->
+                    <h3 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title }}</a></h3><!-- /.entry-title -->
+                    <div class="entry-meta">
+                      <span class="author"><a href="{% url "videos:userhomepage" slug=video.author.user.username %}">{{ video.author.user.username }}</a></span><!-- /.author -->
+                      <span><i class="fa fa-clock-o"></i> <time datetime="PT5M">{{ video.time|timesince }} ago</time></span>
+                      <span><a href="#"><i class="fa fa-comment-o"></i> <span class="count">{{ video.comment|length }}</span></a></span>
+                      <span><i class="fa fa-eye"></i> <span class="count">{{ view }}</span></span>
+                    </div><!-- /.entry-meta -->
+                  </div><!-- /.emtry-content -->
+                </article>
+              </div>
+                    {% endvideo %}
+                {% endfor %}
+
+            </div>
+          <nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if page_list.has_previous %}
+    <li class="page-item"><a class="page-link" href="?{{ page_request_var }}={{ page_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a></li>
+      {% endif %}
+      <li class="page-item"><a href="#" class="page-link">Page {{ page_list.number }} of {{ page_list.paginator.num_pages }}</a> </li>
+  {% if object_list.has_next %}
+    <li class="page-item"><a class="page-link" href="?{{ page_request_var }}={{ page_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a></li>
+  {% endif %}
+  </ul>
+</nav>
+
+
+{#            <div class="btn-container text-center clearfix"><a href="#" class="btn read-more">Load more</a></div>#}
+          </div>
+
+
+          <div class="col-sm-4">
+            <aside class="sidebar">
+              <div class="widget widget_submit_video">
+                <h3 class="widget-title">Submit Video</h3><!-- /.widget-title -->
+                <div class="widget-details">
+                  <p>Please submit yout orginal videos, any illegal videos will be deleted by editors
+                                    immediately. </p>
+                  <div class="file-upload"><a href="{% url "videos:videoupload" %}" class="btn upload-btn">Upload your video</a></div>
+
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+
+              <div class="widget widget_banner_ad">
+                <div class="widget-details">
+                  <a href="#"><img src="{% static "assets/images/ad.jpg" %}" alt="Banner ad image"></a>
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+                <div class="widget widget_banner_ad">
+                <div class="widget-details">
+                  <a href="#"><img src="{% static "assets/images/ad.jpg" %}" alt="Banner ad image"></a>
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+
+
+
+
+            </aside><!-- /.sidebar -->
+          </div>                    
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

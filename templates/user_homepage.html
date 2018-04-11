@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <section class="author-heading">
+    <div class="section-padding">
+      <div class="container">
+        <div class="heading-top">
+          <div class="author-cover-image background-bg" data-image-src="{% static "assets/images/bg3.jpg" %}">
+            <div class="overlay"></div><!-- /.overlay -->
+          </div><!-- /.author-cover-image -->
+        </div><!-- /.heading-top -->
+        <div class="heading-bottom">
+          <div class="bottom-left col-xs-6">
+            <div class="author-image"><img src="{% static 'assets/images/author.jpg' %}" alt="Author Image"></div>
+            <h3 class="author-name"><a href="#">{{ userprofile.user.username }}</a></h3>
+          </div><!-- /.bottom-left -->
+
+{#          <div class="bottom-right col-xs-6 text-right">#}
+{#            <button class="btn followed-btn disabled">Followed</button><!-- /.follow-btn -->#}
+{#            <span class="subs-count"><span class="count">3055</span> Followers</span><!-- /.subs-count -->#}
+{#          </div><!-- /.bottom-right -->#}
+        </div><!-- /.header-bottom -->
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.author-heading -->
+
+
+
+  <section class="author-page-contents">
+    <div class="section-padding">
+      <div class="container">
+        <nav class="author-page-links">
+          <a class="active" href="#">Home</a>
+          <a href="{% url 'videos:uservideos' slug=userprofile.user.username%}">Videos</a>
+            {% if userprofile.user == request.user %}
+          <a href="{% url 'videos:videoupload' %}">Upload</a>
+            {% endif %}
+        </nav><!-- /.author-page-links -->
+
+        <div class="author-contents">
+          <div class="row">
+            <div class="col-sm-8">
+                <div class="about-author">
+                <h4>Description</h4>
+                <p>
+                    {{ userprofile.description }}
+                </p>
+
+            </div>
+            </div>
+
+            <div class="col-sm-4">
+              <aside class="sidebar">
+                  <div class="widget widget_banner_ad">
+                <div class="widget-details">
+                  <a href="#"><img src="{% static "assets/images/ad.jpg" %}" alt="Banner ad image"></a>
+                </div><!-- /.widget-details -->
+              </div><!-- /.widget -->
+              </aside><!-- /.sidebar -->
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.author-page-contents -->
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,26 @@
+{% load comments %}
+{% load mptt_tags %}
+
+{% get_comment_list for object as comments %}
+{% if comments %}
+    <ul class="root">
+{% recursetree comments %}
+        <li>
+            {{ node.comment }}
+            {{ node.user }}
+            {{ node.submit_date|timesince }} ago
+
+        {% render_comment_form for object %}
+
+    {# recursion! children of a given comment #}
+
+    {% if not node.is_leaf_node %}
+        <ul class="children">
+        {{ children }}
+        </ul>
+    {% endif %}
+        </li>
+{% endrecursetree %}
+    </ul>
+{% endif %}
+{% render_comment_form for object %}

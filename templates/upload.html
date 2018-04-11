@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <section class="author-heading">
+    <div class="section-padding">
+      <div class="container">
+        <div class="heading-top">
+          <div class="author-cover-image background-bg" data-image-src="{% static "assets/images/bg3.jpg" %}">
+            <div class="overlay"></div><!-- /.overlay -->
+          </div><!-- /.author-cover-image -->
+        </div><!-- /.heading-top -->
+        <div class="heading-bottom">
+          <div class="bottom-left col-xs-6">
+            <div class="author-image"><img src="{% static 'assets/images/author.jpg' %}" alt="Author Image"></div>
+            <h3 class="author-name"><a href="#">{{ request.user.username }}</a></h3>
+          </div><!-- /.bottom-left -->
+
+        </div><!-- /.header-bottom -->
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.author-heading -->
+
+
+
+  <section class="author-page-contents">
+    <div class="section-padding">
+      <div class="container">
+        <nav class="author-page-links">
+          <a href="{% url 'videos:userhomepage' slug=request.user.username %}">Home</a>
+          <a href="{% url 'videos:uservideos' slug=request.user.username%}">Videos</a>
+          <a class="active" href="{% url 'videos:videoupload' %}">Upload</a>
+        </nav><!-- /.author-page-links -->
+
+        <div class="author-contents">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="about-author">
+                <div class="upload-video">
+                  <form action="." class="upload-form" method="post">
+                      {% csrf_token %}
+                    <p class="form-element">
+                      <label for="title">Video Title</label>
+                        {{ form.title }}
+                    </p>
+                    <p class="form-element">
+                      <label for="category">Category</label>
+                      {{ form.category}}
+                    </p>
+                    <p class="form-element">
+                      <label for="tags">Tags</label>
+                        {{ form.tags }}
+                    </p>
+                    <p class="form-element">
+                      <label for="privacy">Set Audience</label>
+                      {{ form.audience }}
+                    </p>
+{#                    <p class="form-element file-type">#}
+{#                      <label for="file">Set Audience</label>#}
+{#                      <input type="file" name="file" class="file form-control" id="file">#}
+{#                      <span>Supported format mp4, flv, 3gp, mkv; Max File size 50 MB</span>#}
+{#                    </p>#}
+                    <p class="form-element file-type">
+                      <label for="description">Description</label>
+                        {{ form.description }}
+                    </p>
+                      <p class="form-element">
+                      <label for="url">Video Url</label>
+                      {{ form.url }}
+                    </p>
+                    <input type="submit" value="Upload Now" class="submit" name="submit">
+                  </form>
+                </div><!-- /.upload-video -->
+              </div><!-- /.about-author -->
+            </div>
+
+            <div class="col-sm-4">
+              <aside class="sidebar">
+                  <div class="widget widget_banner_ad">
+                                    <div class="widget-details">
+                                        <a href="#"><img src="{% static "assets/images/ad.jpg" %}"
+                                                         alt="Banner ad image"></a>
+                                    </div><!-- /.widget-details -->
+                                </div><!-- /.widget -->
+                  <div class="widget widget_banner_ad">
+                                    <div class="widget-details">
+                                        <a href="#"><img src="{% static "assets/images/ad.jpg" %}"
+                                                         alt="Banner ad image"></a>
+                                    </div><!-- /.widget-details -->
+                                </div><!-- /.widget -->
+
+
+                <!-- /.widget -->
+              </aside><!-- /.sidebar -->
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container -->
+    </div><!-- /.section-padding -->
+  </section><!-- /.author-page-contents -->
+
+
+
+{% endblock %}
+
