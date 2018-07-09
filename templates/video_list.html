@@ -17,13 +17,14 @@
             </h2>
             <div class="row">
                 {% for video,view in object_list.items %}
-                    {% video video.url as my_video %}
 
               <div class="col-md-4 col-sm-6">
                 <article class="post type-post">
-                  <div class="entry-thumbnail">
-                    <img src="{{ my_video.thumbnail }}" alt="Entry Thumbnail">
-                  </div><!-- /.entry-thumbnail -->
+{#                    <img src="{{ my_video.thumbnail }}" alt="Entry Thumbnail">#}
+                      <video width="229.98" height="165" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                   <div class="entry-content">
                     <span class="category tag"><a href="#">{{ video.category }}</a></span><!-- /.category -->
                     <h3 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title }}</a></h3><!-- /.entry-title -->
@@ -36,7 +37,6 @@
                   </div><!-- /.emtry-content -->
                 </article>
               </div>
-                    {% endvideo %}
                 {% endfor %}
 
             </div>

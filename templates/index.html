@@ -38,15 +38,11 @@
           {% for video,view in editors_first_pick.items %}
             <div class="col-md-7">
               <div class="left-panel">
-                  {% video video.url as my_video %}
                 <article class="post type-post">
-                  <div class="entry-thumbnail">
-                      <img src="{{ my_video.thumbnail }}">
-                    <a class="iframe" href="{{ video.url }}">
-                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
-                    </a>
-                  </div><!-- /.entry-thumbnail -->
-                    {% endvideo %}
+                                                          <video width="652.5" height="387" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                   <div class="entry-content">
                     <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug%}">{{ video.title }}</a></h2><!-- /.entry-title -->
                     <div class="entry-meta">
@@ -68,16 +64,15 @@
               <div class="right-panel">
                   {% for video,view in editors_other_pick.items %}
 
-                {% video video.url as my_video %}
 
                 <article class="post type-post media">
-                  <div class="entry-thumbnail media-left">
-                    <img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
-                    <a href="{{ video.url }}" class="iframe">
-                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
-                    </a>
-                  </div><!-- /.entry-thumbnail -->
-                {% endvideo %}
+                <div class="entry-thumbnail media-left">
+
+                                                          <video width="187.56" height="134" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                </div>
 
                   <div class="entry-content media-body">
                     <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title|truncatewords:15 }}</a></h2><!-- /.entry-title -->
@@ -105,16 +100,13 @@
         <h2 class="section-title">Today's Top Videos</h2><!-- /.section-title -->
         <div id="list-slider" class="list-slider owl-carousel owl-theme">
             {% for video,view in days_popular_videos.items %}
-                                {% video video.url as my_video %}
 
           <div class="item">
             <article class="post type-post">
-              <div class="entry-thumbnail">
-                <img src="{{ my_video.thumbnail }}" alt="Entry Thumbnail">
-                <a href="{{ video.url }}" class="iframe">
-                  <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
-                </a>
-              </div><!-- /.entry-thumbnail -->
+                                                      <video width="270" height="240" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
               <div class="entry-content">
                     <h8 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title|truncatewords:15 }}</a></h8>{#                <span class="post-count"><a href="#"><span class="count">19</span> videos</a></span><!-- /.post-count -->#}
                     <div class="entry-meta">
@@ -126,7 +118,6 @@
               </div><!-- /.entry-content -->
             </article><!-- /.post -->
           </div>
-                {% endvideo %}
             {% endfor %}
 
         </div>
@@ -143,16 +134,13 @@
 
             <div class="trending-slider owl-carousel owl-theme">
                   {% for video,view in latest_videos.items %}
-                {% video video.url as my_video %}
 
               <div class="item">
                   <article class="post type-post">
-                  <div class="entry-thumbnail">
-                    <img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
-                    <a class="iframe" href="{{ video.url }}">
-                      <span class="play-video"><i class="fa fa-play-circle-o"></i></span>
-                    </a>
-                  </div><!-- /.entry-thumbnail -->
+                                                          <video width="240" height="192" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                   <div class="entry-content">
                     <h2 class="entry-title"><a href="{% url "videos:videodetail" slug=video.slug %}">{{ video.title }}</a></h2><!-- /.entry-title -->
                     <div class="entry-meta">
@@ -165,7 +153,6 @@
                 </article><!-- /.type-post -->
 
               </div><!-- /.item -->
-                {% endvideo %}
                           {% endfor %}
 
             </div><!-- /.latest-videos-slider -->
@@ -173,13 +160,13 @@
 
             <div class="weekly-top owl-carousel owl-theme">
                 {% for video,view in week_popular_videos.items %}
-                    {% video video.url as my_video %}
 
               <div class="item">
                 <article class="post type-post">
-                  <div class="entry-thumbnail"><img src="{{ my_video.thumbnail }}" alt="Item Thumbnail">
-                    <a href="{{ video.url }}" class="iframe play-video"><i class="fa fa-play-circle-o"></i></a>
-                  </div><!-- /.entry-thumbnail -->
+                                                          <video width="750" height="430" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
 
                   <div class="entry-content">
                     <h2 class="entry-title">
@@ -196,7 +183,6 @@
                   </div><!-- /.entry-content -->
                 </article><!-- /.type-post -->
               </div><!-- /.item -->
-                    {% endvideo %}
                 {% endfor %}
                             </div><!-- /.weekly-top -->
             <div class="padding"></div><!-- /.padding -->

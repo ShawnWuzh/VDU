@@ -11,6 +11,7 @@ from django.contrib.contenttypes.models import ContentType
 from comments.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from ipware import get_client_ip
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -77,7 +78,7 @@ def index(request):
 
 @login_required
 def video_upload(request):
-    form = VideoUploadForm(request.POST or None)
+    form = VideoUploadForm(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
         userprofile = UserProfile.objects.get(user=request.user)

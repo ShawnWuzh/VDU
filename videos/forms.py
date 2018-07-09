@@ -56,7 +56,7 @@ class VideoUploadForm(forms.ModelForm):
             'tags',
             'audience',
             'description',
-            'url',
+            'file'
         ]
         CHOICES = (('Private', 'Private'), ('Public', 'Public'))
 
@@ -66,7 +66,7 @@ class VideoUploadForm(forms.ModelForm):
             "tags":forms.TextInput(attrs={"class":"tag form-control","placeholder":"Enter up to 5 tags and separate them with a coma"}),
             "audience": forms.Select(attrs={"class": "privacy form-control","id":"privacy"},choices=CHOICES),
             "description":forms.Textarea(attrs={"class":"description form-control","placeholder":"Description","id":"description"}),
-            "url":forms.TextInput(attrs={"class":"title form-control","placeholder":"Url","id":"url"}),
+            "file": forms.FileInput(attrs={"class": "file form-control", "placeholder": "file", "id": "file", "name":"file"}),
         }
 
 class UserLoginForm(forms.Form):

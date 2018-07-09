@@ -9,13 +9,16 @@
                     <div class="col-sm-8">
                         <article class="post type-post format-standard">
                             <div class="entry-thumbnail">
-                                {% video instance.url as my_video %}
                                     <div class="item">
-                                        <img src="{{ my_video.thumbnail }}" alt="Slider Image">
-                                        <a class="play-video iframe" href="{{ instance.url }}"><i
-                                                class="fa fa-play"></i></a>
+
+                                        <video width="750" height="422" controls>
+                        <source src="{{ instance.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+{#                                        <img src="{{ my_video.thumbnail }}" alt="Slider Image">#}
+{#                                        <a class="play-video iframe" href="{{ instance.url }}"><i#}
+{#                                                class="fa fa-play"></i></a>#}
                                     </div>
-                                {% endvideo %}
                             </div><!-- /.entry-thumbnail -->
 
                             <div class="entry-content">

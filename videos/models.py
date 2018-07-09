@@ -46,10 +46,10 @@ class Video(models.Model):
     tags = models.CharField(max_length=120)
     audience = models.CharField(max_length=20)
     description = models.TextField()
-    url = models.URLField()
     author = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True,auto_now=False)
     editors_pick = models.BooleanField(default=False)
+    file = models.FileField(upload_to='videos/', null=True, verbose_name="")
     class Meta:
         ordering = ['-time']
 

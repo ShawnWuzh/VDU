@@ -37,7 +37,7 @@
             <div class="col-sm-8">
               <div class="about-author">
                 <div class="upload-video">
-                  <form action="." class="upload-form" method="post">
+                  <form action="." enctype="multipart/form-data" class="upload-form" method="post">
                       {% csrf_token %}
                     <p class="form-element">
                       <label for="title">Video Title</label>
@@ -65,8 +65,8 @@
                         {{ form.description }}
                     </p>
                       <p class="form-element">
-                      <label for="url">Video Url</label>
-                      {{ form.url }}
+                      <label for="file">Video File</label>
+                      {{ form.file }}
                     </p>
                     <input type="submit" value="Upload Now" class="submit" name="submit">
                   </form>
